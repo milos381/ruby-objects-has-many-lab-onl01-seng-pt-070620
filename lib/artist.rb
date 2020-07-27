@@ -1,3 +1,5 @@
+require 'pry'
+
 class Artist
   attr_accessor :name
 
@@ -5,9 +7,19 @@ class Artist
 
   def initialize(name)
     @name = name
-    @songs = []   #ask why do we need to keep songs here when we have it in Song.all
+    @songs = []   #having many of something means you own a collection of that thing.
+                  # Recall that we use instance variables to store the attributes of a given
+                  # instance of a class. This instance variable is set equal to an empty arr
+                  #  because our artist doesn't have any songs yet.
   end
 
+  #  it isn't the song's responsibility to add itself
+  #                     to the artist's collection of songs, it is the artist's
+  #                      responsibility to add a new song to their collection.
+  #
+  #                     That's why we'll write the method that adds songs to
+  #                     an artist's collection in the Artist class:
+     #binding.pry
   def add_song(song)
     self.songs << song  # Why self?
     song.artist = self # I don't understand what this line does
@@ -22,11 +34,19 @@ class Artist
   end
 
   def songs
-    Song.all.select {|song| song.artist == self}  #this I don't understand
-
+    # Let's write an instance method, #songs,
+    # that we can call on an individual artist to return
+    # the list of songs that the artist has.
+    Song.all.select do |song|
+      song.artist == self
+    end
+    # {|song| song.artist == self}  #this I don't understand
   end
 
   def self.song_count
-    @@song_count  #why is it not working?
+      Song.all.count #why is it not working?
   end
 end
+
+
+beatles = Artist.new("The Beatles")

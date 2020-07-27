@@ -12,6 +12,7 @@ class Song
   def artist_name
     if self.artist   #don't understand these two lines
       self.artist.name
+      #binding.pry
     else
       nil
     end
@@ -23,3 +24,6 @@ class Song
 end
 #also what is the author name
 #how do songs know all of its names
+
+
+#
