@@ -1,16 +1,17 @@
+require 'pry'
 class Song
   attr_accessor :name, :artist
 
   @@all = []
 
-  def initialize(name, artist=nil)  #why artist = nil
+  def initialize(name)
     @name = name
-    @artist = artist
-    @@all << self         #why adding like this, why not just save
+
+    @@all << self
   end
 
   def artist_name
-    if self.artist   #don't understand these two lines
+    if self.artist
       self.artist.name
       #binding.pry
     else
@@ -22,6 +23,7 @@ class Song
     @@all
   end
 end
+#binding.pry
 #also what is the author name
 #how do songs know all of its names
 
